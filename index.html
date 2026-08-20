@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HyperSEO — Technical SEO That Moves Rankings</title>
+<meta name="description" content="Technical SEO audits, content strategy, and link building for growth teams who need organic traffic to actually move.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --indigo:#2A2A72;
+    --electric:#4C5FD5;
+    --mint:#38D9A9;
+    --ink:#14152B;
+    --paper:#F4F3F8;
+    --white:#FFFFFF;
+    --ink-60: rgba(20,21,43,0.62);
+    --ink-30: rgba(20,21,43,0.22);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    font-weight:300;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{font-family:'Outfit', sans-serif; font-weight:600;}
+  .mono{
+    font-family:'JetBrains Mono', monospace;
+    text-transform:uppercase;
+    letter-spacing:0.14em;
+    font-size:0.7rem;
+  }
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block; object-fit:cover;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 clamp(20px,5vw,60px);}
+  .reveal{opacity:0; transform:translateY(22px); transition:opacity .7s ease, transform .7s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  /* ---------- signature: uptrend rule ---------- */
+  .trend-rule{
+    width:100%; height:20px;
+    background-repeat:repeat-x; background-size:40px 20px;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='20' viewBox='0 0 40 20'><path d='M0 18 L10 12 L20 14 L30 4 L40 2' fill='none' stroke='%2338D9A9' stroke-width='1.6'/><path d='M34 2 L40 2 L40 8' fill='none' stroke='%2338D9A9' stroke-width='1.6'/></svg>");
+  }
+
+  /* ---------- header ---------- */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:50;
+    background:rgba(244,243,248,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid rgba(20,21,43,0.1);
+  }
+  nav{display:flex; align-items:center; justify-content:space-between; padding:16px clamp(20px,5vw,60px);}
+  .logo{display:flex; align-items:center; gap:10px; font-family:'Outfit',sans-serif; font-size:1.15rem;}
+  .logo-mark{width:28px; height:28px;}
+  .logo em{font-style:normal; color:var(--mint);}
+  .nav-links{display:flex; gap:28px; align-items:center;}
+  .nav-links a{font-family:'JetBrains Mono', monospace; font-size:0.65rem; text-transform:uppercase; letter-spacing:0.1em; position:relative; padding-bottom:3px;}
+  .nav-links a::after{content:''; position:absolute; left:0; bottom:0; width:0; height:1px; background:var(--electric); transition:width .3s ease;}
+  .nav-links a:hover::after{width:100%;}
+  .nav-cta{
+    background:var(--indigo); color:var(--white);
+    padding:10px 20px; font-family:'JetBrains Mono',monospace; font-size:0.64rem;
+    text-transform:uppercase; letter-spacing:0.1em;
+  }
+  .nav-toggle{display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer;}
+  .nav-toggle span{width:22px; height:1.5px; background:var(--ink);}
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative; min-height:94vh;
+    display:grid; grid-template-columns:1.05fr 0.95fr; align-items:center; gap:0;
+    padding-top:100px;
+    background:var(--ink); color:var(--white);
+  }
+  .hero-copy{padding:0 clamp(20px,5vw,60px);}
+  .badge-tag{
+    display:inline-flex; align-items:center; gap:8px;
+    border:1px solid var(--mint); color:var(--mint);
+    padding:7px 14px; margin-bottom:24px;
+    font-family:'JetBrains Mono',monospace; font-size:0.64rem; letter-spacing:0.12em; text-transform:uppercase;
+  }
+  .hero h1{font-size:clamp(2.6rem,5.6vw,4.4rem); line-height:1.06;}
+  .hero h1 span{color:var(--mint);}
+  .hero-sub{margin-top:26px; max-width:460px; font-size:1.05rem; line-height:1.8; color:rgba(244,243,248,0.7);}
+  .hero-cta{margin-top:38px; display:flex; gap:16px; flex-wrap:wrap;}
+  .btn{
+    display:inline-block; padding:15px 28px;
+    font-family:'JetBrains Mono',monospace; font-size:0.7rem;
+    text-transform:uppercase; letter-spacing:0.12em;
+    background:var(--mint); color:var(--ink); border:1px solid var(--mint);
+    transition:background .3s ease, color .3s ease;
+  }
+  .btn:hover{background:transparent; color:var(--mint);}
+  .btn-line{background:transparent; color:var(--white); border:1px solid rgba(244,243,248,0.3);}
+  .btn-line:hover{background:rgba(244,243,248,0.08);}
+
+  .hero-photo{position:relative; height:100%; min-height:70vh; overflow:hidden;}
+  .hero-photo img{width:100%; height:100%;}
+  .hero-photo::after{content:''; position:absolute; inset:0; background:linear-gradient(90deg, var(--ink) 0%, transparent 18%);}
+
+  .hero-facts{
+    grid-column:1/-1; margin-top:60px; padding:26px clamp(20px,5vw,60px) 0;
+    border-top:1px solid rgba(244,243,248,0.14);
+    display:flex; gap:clamp(28px,6vw,60px); flex-wrap:wrap;
+  }
+  .fact-num{font-family:'Outfit',sans-serif; font-size:1.8rem; color:var(--mint);}
+  .fact-label{margin-top:4px; color:rgba(244,243,248,0.5); font-size:0.68rem; font-family:'JetBrains Mono',monospace; text-transform:uppercase; letter-spacing:0.06em;}
+
+  /* ---------- section shell ---------- */
+  section{padding:110px 0;}
+  .section-head{display:flex; justify-content:space-between; align-items:flex-end; gap:36px; margin-bottom:58px; flex-wrap:wrap;}
+  .section-head .mono{color:var(--electric); display:block; margin-bottom:12px;}
+  .section-head h2{font-size:clamp(2rem,4.2vw,3rem); max-width:560px;}
+  .section-head p{max-width:320px; color:var(--ink-60); line-height:1.7; font-size:0.94rem;}
+
+  /* ---------- services ---------- */
+  .services{background:var(--paper);}
+  .s-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:2px; background:rgba(20,21,43,0.1);}
+  .s-card{background:var(--paper); padding:34px 26px; transition:background .3s ease;}
+  .s-card:hover{background:var(--white);}
+  .s-icon{width:34px; height:34px; margin-bottom:20px;}
+  .s-card h3{font-size:1.08rem; margin-bottom:10px;}
+  .s-card p{font-size:0.86rem; color:var(--ink-60); line-height:1.65;}
+
+  /* ---------- results photo band ---------- */
+  .results{position:relative; min-height:64vh; display:flex; align-items:center; overflow:hidden;}
+  .results img{position:absolute; inset:0; width:100%; height:100%;}
+  .results::after{content:''; position:absolute; inset:0; background:linear-gradient(90deg, rgba(20,21,43,0.88), rgba(20,21,43,0.35));}
+  .results-content{position:relative; z-index:2; color:var(--white); max-width:600px;}
+  .results-content .mono{color:var(--mint); margin-bottom:16px; display:block;}
+  .results-content h2{font-size:clamp(1.9rem,4.2vw,2.8rem); margin-bottom:18px;}
+  .results-stats{display:flex; gap:40px; margin-top:34px; flex-wrap:wrap;}
+  .results-stats .fact-num{color:var(--mint);}
+  .results-stats .fact-label{color:rgba(244,243,248,0.6);}
+
+  /* ---------- process ---------- */
+  .process{background:var(--indigo); color:var(--white);}
+  .process .section-head .mono{color:var(--mint);}
+  .process .section-head p{color:rgba(244,243,248,0.62);}
+  .p-list{border-top:1px solid rgba(244,243,248,0.16);}
+  .p-item{
+    display:grid; grid-template-columns:90px 1fr 1fr; gap:30px;
+    padding:30px 0; border-bottom:1px solid rgba(244,243,248,0.16); align-items:start;
+  }
+  .p-mark{font-family:'Outfit',sans-serif; font-size:1.3rem; color:var(--mint);}
+  .p-item h3{font-size:1.2rem; margin-bottom:6px;}
+  .p-item p{color:rgba(244,243,248,0.65); font-size:0.92rem; line-height:1.7;}
+
+  /* ---------- band ---------- */
+  .band{background:var(--mint); color:var(--ink); padding:90px 0; text-align:center;}
+  .band h2{font-size:clamp(1.8rem,4.4vw,2.6rem); max-width:740px; margin:0 auto 20px; font-weight:500;}
+  .band .mono{color:var(--indigo); display:block; margin-top:16px;}
+
+  /* ---------- pricing ---------- */
+  .pricing{background:var(--paper);}
+  .pr-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+  .pr-card{background:var(--white); border:1px solid rgba(20,21,43,0.1); padding:38px 30px; display:flex; flex-direction:column; height:100%;}
+  .pr-card.featured{background:var(--ink); color:var(--white); border-color:var(--ink);}
+  .pr-name{font-family:'Outfit',sans-serif; font-size:1.35rem; margin-bottom:8px;}
+  .pr-price{font-family:'JetBrains Mono',monospace; font-size:1.05rem; color:var(--electric); margin-bottom:20px;}
+  .pr-card.featured .pr-price{color:var(--mint);}
+  .pr-list{list-style:none; margin-bottom:26px; flex:1;}
+  .pr-list li{font-size:0.86rem; padding:9px 0; border-bottom:1px solid rgba(20,21,43,0.1); color:var(--ink-60);}
+  .pr-card.featured .pr-list li{border-bottom-color:rgba(244,243,248,0.16); color:rgba(244,243,248,0.75);}
+  .pr-card .btn{text-align:center; width:100%;}
+
+  /* ---------- contact ---------- */
+  .contact{background:var(--paper);}
+  .contact-box{
+    background:var(--electric); color:var(--white);
+    padding:clamp(46px,7vw,90px);
+    display:grid; grid-template-columns:1.2fr 1fr; gap:50px; align-items:center;
+  }
+  .contact-box h2{font-size:clamp(1.9rem,4vw,2.7rem); margin-bottom:16px;}
+  .contact-box p{color:rgba(244,243,248,0.85); line-height:1.75; max-width:420px;}
+  .c-form{background:rgba(244,243,248,0.1); border:1px solid rgba(244,243,248,0.22); padding:32px;}
+  .c-form .mono{color:var(--mint); display:block; margin-bottom:18px;}
+  .field{margin-bottom:16px;}
+  .field label{display:block; font-size:0.78rem; color:rgba(244,243,248,0.65); margin-bottom:6px;}
+  .field input, .field select{
+    width:100%; background:transparent; border:none; border-bottom:1px solid rgba(244,243,248,0.34);
+    color:var(--white); font-family:'Inter',sans-serif; font-size:0.95rem; padding:8px 0; outline:none;
+  }
+  .field select option{color:#111;}
+  .c-form .btn{width:100%; text-align:center; margin-top:8px; background:var(--mint); border-color:var(--mint); color:var(--ink);}
+  .c-form .btn:hover{background:transparent; color:var(--mint); border-color:rgba(244,243,248,0.5);}
+
+  /* ---------- footer ---------- */
+  footer{background:var(--ink); color:rgba(244,243,248,0.55); padding:64px 0 26px;}
+  .foot-grid{display:grid; grid-template-columns:1.3fr 1fr 1fr 1fr; gap:36px; padding-bottom:44px;}
+  .foot-brand .logo{color:var(--white); margin-bottom:14px;}
+  .foot-brand p{font-size:0.85rem; line-height:1.7; max-width:270px;}
+  .foot-col .mono{color:var(--mint); display:block; margin-bottom:16px;}
+  .foot-col a{display:block; font-size:0.85rem; margin-bottom:9px; color:rgba(244,243,248,0.6);}
+  .foot-col a:hover{color:var(--white);}
+  .foot-bottom{display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; padding-top:22px; border-top:1px solid rgba(244,243,248,0.12); font-size:0.74rem;}
+
+  @media (max-width:920px){
+    .nav-links{display:none;}
+    .nav-toggle{display:flex;}
+    .hero{grid-template-columns:1fr;}
+    .hero-photo{order:-1; min-height:40vh;}
+    .s-grid{grid-template-columns:repeat(2,1fr);}
+    .p-item{grid-template-columns:60px 1fr;}
+    .p-item p{grid-column:2/3;}
+    .pr-grid{grid-template-columns:1fr;}
+    .contact-box{grid-template-columns:1fr;}
+    .foot-grid{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width:560px){
+    .s-grid{grid-template-columns:1fr;}
+    .foot-grid{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <div class="logo">
+      <svg class="logo-mark" viewBox="0 0 40 40" fill="none">
+        <rect x="4" y="4" width="32" height="32" fill="#2A2A72"/>
+        <path d="M10 26 L16 18 L22 22 L30 10" stroke="#38D9A9" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      hyper<em>seo</em>
+    </div>
+    <div class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#results">Results</a>
+      <a href="#process">Process</a>
+      <a href="#contact" class="nav-cta">Get an Audit</a>
+    </div>
+    <button class="nav-toggle" aria-label="menu"><span></span><span></span><span></span></button>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-copy">
+    <span class="badge-tag mono">Technical SEO, not guesswork</span>
+    <h1>Rankings that move<br>because the <span>site</span> works.</h1>
+    <p class="hero-sub">Most SEO problems are technical before they're anything else — crawl budget, site speed, and structure. We fix those first, then build the content and links that compound on top.</p>
+    <div class="hero-cta">
+      <a href="#contact" class="btn">Get a Free Audit</a>
+      <a href="#services" class="btn btn-line">See Our Services</a>
+    </div>
+  </div>
+  <div class="hero-photo">
+    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?fm=jpg&q=80&w=1400&auto=format&fit=crop" alt="Performance analytics graphs on a laptop screen">
+  </div>
+  <div class="hero-facts">
+    <div><div class="fact-num">340+</div><div class="fact-label">Sites audited</div></div>
+    <div><div class="fact-num">2.8x</div><div class="fact-label">Average organic traffic lift</div></div>
+    <div><div class="fact-num">90 days</div><div class="fact-label">To first ranking movement</div></div>
+    <div><div class="fact-num">No</div><div class="fact-label">Long-term lock-in contracts</div></div>
+  </div>
+</section>
+
+<div class="trend-rule"></div>
+
+<section class="services" id="services">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <span class="mono">What we do</span>
+        <h2>Every layer of SEO that actually moves the needle</h2>
+      </div>
+      <p>We scope which layers you need in the first audit call — most clients don't need all four at once.</p>
+    </div>
+    <div class="s-grid reveal">
+      <div class="s-card">
+        <svg class="s-icon" viewBox="0 0 40 40" fill="none"><circle cx="17" cy="17" r="10" stroke="#2A2A72" stroke-width="1.6"/><path d="M25 25 L33 33" stroke="#38D9A9" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <h3>Technical Audits</h3>
+        <p>Full crawl analysis covering site speed, indexation, and structural issues search engines actually penalize.</p>
+      </div>
+      <div class="s-card">
+        <svg class="s-icon" viewBox="0 0 40 40" fill="none"><rect x="9" y="8" width="22" height="24" rx="2" stroke="#2A2A72" stroke-width="1.6"/><path d="M14 16h12M14 22h8" stroke="#38D9A9" stroke-width="1.6"/></svg>
+        <h3>Content Strategy</h3>
+        <p>Keyword and topic mapping built around search intent, not just volume — briefs your writers can actually use.</p>
+      </div>
+      <div class="s-card">
+        <svg class="s-icon" viewBox="0 0 40 40" fill="none"><circle cx="14" cy="14" r="5" stroke="#2A2A72" stroke-width="1.6"/><circle cx="26" cy="26" r="5" stroke="#2A2A72" stroke-width="1.6"/><path d="M18 18 L22 22" stroke="#38D9A9" stroke-width="1.6"/></svg>
+        <h3>Link Building</h3>
+        <p>Outreach and digital PR focused on relevance over raw volume — the links that actually move rankings.</p>
+      </div>
+      <div class="s-card">
+        <svg class="s-icon" viewBox="0 0 40 40" fill="none"><path d="M8 30 L16 18 L22 24 L32 10" stroke="#2A2A72" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg>
+        <h3>Reporting &amp; Tracking</h3>
+        <p>A live dashboard tied to your actual revenue metrics, not just rankings for vanity keywords.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="results" id="results">
+  <img src="https://images.unsplash.com/photo-1686061593213-98dad7c599b9?fm=jpg&q=80&w=2000&auto=format&fit=crop" alt="Analytics dashboard showing traffic growth">
+  <div class="wrap">
+    <div class="results-content reveal">
+      <span class="mono">Results, not vanity metrics</span>
+      <h2>We report on traffic that converts, not just traffic</h2>
+      <p>Every dashboard we build ties organic sessions back to signups, leads, or revenue — because a ranking nobody clicks isn't a result.</p>
+      <div class="results-stats">
+        <div><div class="fact-num">2.8x</div><div class="fact-label">Avg. organic traffic lift</div></div>
+        <div><div class="fact-num">61%</div><div class="fact-label">Avg. lift in organic leads</div></div>
+        <div><div class="fact-num">6mo</div><div class="fact-label">Typical time to compounding growth</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="process" id="process">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <span class="mono">How we work</span>
+        <h2>Four steps, no black box</h2>
+      </div>
+      <p>You see every recommendation and why it's prioritized before anything ships.</p>
+    </div>
+    <div class="p-list reveal">
+      <div class="p-item">
+        <div class="p-mark">01</div>
+        <h3>Full technical audit</h3>
+        <p>We crawl the site, check Core Web Vitals, and flag indexation issues before touching content or links.</p>
+      </div>
+      <div class="p-item">
+        <div class="p-mark">02</div>
+        <h3>Prioritized fix list</h3>
+        <p>Issues ranked by traffic impact and effort — you see exactly what we're fixing first and why.</p>
+      </div>
+      <div class="p-item">
+        <div class="p-mark">03</div>
+        <h3>Content &amp; link execution</h3>
+        <p>Once the technical base is solid, we build out content and outreach against a shared editorial calendar.</p>
+      </div>
+      <div class="p-item">
+        <div class="p-mark">04</div>
+        <h3>Monthly reporting call</h3>
+        <p>A live call walking through what moved, what didn't, and what's next — not just an emailed PDF.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap reveal">
+    <h2>"They found a crawl budget issue our last three agencies missed entirely. Organic traffic doubled in four months."</h2>
+    <span class="mono">— VP Marketing, B2B SaaS client</span>
+  </div>
+</section>
+
+<section class="pricing" id="pricing">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <span class="mono">Pricing</span>
+        <h2>Flat monthly retainers, scoped up front</h2>
+      </div>
+      <p>Every plan includes the technical audit — you're never paying for content or links you don't need yet.</p>
+    </div>
+    <div class="pr-grid reveal">
+      <div class="pr-card">
+        <div class="pr-name">Audit Only</div>
+        <div class="pr-price">$1,200 one-time</div>
+        <ul class="pr-list">
+          <li>Full technical crawl &amp; audit</li>
+          <li>Prioritized fix list</li>
+          <li>One walkthrough call</li>
+        </ul>
+        <a href="#contact" class="btn btn-line" style="color:var(--ink); border-color:var(--ink-30);">Get Started</a>
+      </div>
+      <div class="pr-card featured">
+        <div class="pr-name">Growth Retainer</div>
+        <div class="pr-price">$3,400 / month</div>
+        <ul class="pr-list">
+          <li>Ongoing technical monitoring</li>
+          <li>Content strategy &amp; briefs</li>
+          <li>Monthly reporting call</li>
+          <li>Dedicated strategist</li>
+        </ul>
+        <a href="#contact" class="btn">Get Started</a>
+      </div>
+      <div class="pr-card">
+        <div class="pr-name">Full Stack</div>
+        <div class="pr-price">$6,800 / month</div>
+        <ul class="pr-list">
+          <li>Everything in Growth</li>
+          <li>Link building &amp; digital PR</li>
+          <li>Revenue-tied dashboard</li>
+          <li>Weekly check-ins</li>
+        </ul>
+        <a href="#contact" class="btn btn-line" style="color:var(--ink); border-color:var(--ink-30);">Get Started</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="contact-box reveal">
+      <div>
+        <span class="mono" style="color:var(--mint);">Get started</span>
+        <h2>Get a free technical audit</h2>
+        <p>Send your site and we'll come back with a prioritized fix list within three business days — no obligation to sign anything after.</p>
+      </div>
+      <div class="c-form">
+        <span class="mono">Request an audit</span>
+        <div class="field">
+          <label for="name">Name</label>
+          <input id="name" type="text" placeholder="Your name">
+        </div>
+        <div class="field">
+          <label for="email">Work email</label>
+          <input id="email" type="email" placeholder="you@company.com">
+        </div>
+        <div class="field">
+          <label for="site">Website URL</label>
+          <input id="site" type="text" placeholder="yoursite.com">
+        </div>
+        <button type="button" class="btn">Request a Free Audit</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="logo">hyper<em style="font-style:normal;color:var(--mint);">seo</em></div>
+        <p>Technical SEO, content strategy, and link building for growth teams who need organic traffic to compound.</p>
+      </div>
+      <div class="foot-col">
+        <span class="mono">Services</span>
+        <a href="#services">Technical audits</a>
+        <a href="#services">Content strategy</a>
+        <a href="#services">Link building</a>
+      </div>
+      <div class="foot-col">
+        <span class="mono">Company</span>
+        <a href="#process">How we work</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="foot-col">
+        <span class="mono">Resources</span>
+        <a href="#">SEO glossary</a>
+        <a href="#">Case studies</a>
+        <a href="#">Blog</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 HyperSEO. Technical SEO &amp; growth strategy.</span>
+      <span>hyperseottech.site</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{threshold:0.15});
+  revealEls.forEach(el=>io.observe(el));
+
+  const toggle = document.querySelector('.nav-toggle');
+  const links = document.querySelector('.nav-links');
+  toggle?.addEventListener('click', ()=>{
+    const open = links.style.display === 'flex';
+    links.style.display = open ? 'none' : 'flex';
+    links.style.cssText += open ? '' : 'position:fixed;top:64px;left:0;right:0;background:#F4F3F8;flex-direction:column;padding:24px;gap:18px;border-bottom:1px solid rgba(20,21,43,0.1);';
+  });
+</script>
+
+</body>
+</html>
